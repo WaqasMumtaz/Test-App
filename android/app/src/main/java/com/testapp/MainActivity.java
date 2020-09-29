@@ -1,6 +1,7 @@
 package com.testapp;
 
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen; // required for react-native-splash-screen
 
 public class MainActivity extends ReactActivity {
 
@@ -10,6 +11,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
+    SplashScreen.show(this);
     return "TestApp";
   }
 }

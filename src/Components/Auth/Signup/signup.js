@@ -54,40 +54,42 @@ const Signup = props => {
       user_age: userAge,
       user_address: userAddress,
     };
-    var formBody = [];
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-    formBody = formBody.join('&');
+    // setLoading(false);
+    console.log('Register Data User >>', dataToSend);
+    // var formBody = [];
+    // for (var key in dataToSend) {
+    //   var encodedKey = encodeURIComponent(key);
+    //   var encodedValue = encodeURIComponent(dataToSend[key]);
+    //   formBody.push(encodedKey + '=' + encodedValue);
+    // }
+    // formBody = formBody.join('&');
 
-    fetch('https://aboutreact.herokuapp.com/register.php', {
-      method: 'POST',
-      body: formBody,
-      headers: {
-        //Header Defination
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then(response => response.json())
-      .then(responseJson => {
-        //Hide Loader
-        setLoading(false);
-        console.log(responseJson);
-        // If server response message same as Data Matched
-        if (responseJson.status == 1) {
-          setIsRegistraionSuccess(true);
-          console.log('Registration Successful. Please Login to proceed');
-        } else {
-          setErrortext('Registration Unsuccessful');
-        }
-      })
-      .catch(error => {
-        //Hide Loader
-        setLoading(false);
-        console.error(error);
-      });
+    // fetch('https://aboutreact.herokuapp.com/register.php', {
+    //   method: 'POST',
+    //   body: formBody,
+    //   headers: {
+    //     //Header Defination
+    //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    //   },
+    // })
+    //   .then(response => response.json())
+    //   .then(responseJson => {
+    //     //Hide Loader
+    //     setLoading(false);
+    //     console.log(responseJson);
+    //     // If server response message same as Data Matched
+    //     if (responseJson.status == 1) {
+    //       setIsRegistraionSuccess(true);
+    //       console.log('Registration Successful. Please Login to proceed');
+    //     } else {
+    //       setErrortext('Registration Unsuccessful');
+    //     }
+    //   })
+    //   .catch(error => {
+    //     //Hide Loader
+    //     setLoading(false);
+    //     console.error(error);
+    //   });
   };
   if (isRegistraionSuccess) {
     return (
@@ -131,7 +133,7 @@ const Signup = props => {
             <TextInput
               style={styles.inputStyle}
               onChangeText={UserName => setUserName(UserName)}
-              underlineColorAndroid="#FFFFFF"
+              // underlineColorAndroid="#FFFFFF"
               placeholder="Enter Name"
               placeholderTextColor="#F6F6F7"
               autoCapitalize="sentences"
@@ -139,6 +141,7 @@ const Signup = props => {
               // onSubmitEditing={() =>
               //   this._emailinput && this._emailinput.focus()
               // }
+              value={userName}
               blurOnSubmit={false}
             />
           </View>
@@ -146,13 +149,14 @@ const Signup = props => {
             <TextInput
               style={styles.inputStyle}
               onChangeText={UserEmail => setUserEmail(UserEmail)}
-              underlineColorAndroid="#F6F6F7"
+              // underlineColorAndroid="#F6F6F7"
               placeholder="Enter Email"
               placeholderTextColor="#F6F6F7"
               keyboardType="email-address"
               // ref={ref => {
               //   this._emailinput = ref;
               // }}
+              value={userEmail}
               returnKeyType="next"
               onSubmitEditing={() => this._ageinput && this._ageinput.focus()}
               blurOnSubmit={false}
@@ -162,13 +166,14 @@ const Signup = props => {
             <TextInput
               style={styles.inputStyle}
               onChangeText={UserAge => setUserAge(UserAge)}
-              underlineColorAndroid="#F6F6F7"
+              // underlineColorAndroid="#F6F6F7"
               placeholder="Enter Age"
               placeholderTextColor="#F6F6F7"
               keyboardType="numeric"
               // ref={ref => {
               //   this._ageinput = ref;
               // }}
+              value={userAge}
               onSubmitEditing={() =>
                 this._addressinput && this._addressinput.focus()
               }
@@ -179,13 +184,14 @@ const Signup = props => {
             <TextInput
               style={styles.inputStyle}
               onChangeText={UserAddress => setUserAddress(UserAddress)}
-              underlineColorAndroid="#FFFFFF"
+              // underlineColorAndroid="#FFFFFF"
               placeholder="Enter Address"
               placeholderTextColor="#F6F6F7"
               autoCapitalize="sentences"
               // ref={ref => {
               //   this._addressinput = ref;
               // }}
+              value={userAddress}
               returnKeyType="next"
               onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
