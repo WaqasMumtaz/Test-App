@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styles from './CSS/style';
+//Import action method from authAction
+import { updateUser } from '../../Redux/Actions/authAction';
+import { connect } from 'react-redux';
 //Import all required component
 import {
   TextInput,
@@ -141,4 +144,18 @@ const Login = props => {
     </View>
   );
 };
-export default Login;
+
+const mapStateToProps = (state)=>{
+console.log('MapStateToProps State Value ..>>>', state);
+  return {
+    user:state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+return {
+  updateUser:(user)=>dispatch(updateUser(user))
+}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
